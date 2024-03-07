@@ -13,9 +13,7 @@ public class TextToAudioRadasteid {
 
         Concatenate RadasteidH = new Concatenate();
 
-
         List<String> Radasteid = new ArrayList<>();
-
 
         List<String> lines2 = new ArrayList<>();
 
@@ -30,7 +28,7 @@ public class TextToAudioRadasteid {
                 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з',
                 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р',
                 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
-                'ъ', 'ы', 'ь', 'э', 'ю', 'я', ',', '.'};
+                'ъ', 'ы', 'ь', 'э', 'ю', 'я', ',', '.', '!'};
 
         // Выборка первой строки из файла (для Названия сохраняемого файла)
         //Удаление пробелов в начале и в конце первой строки (для Названия сохраняемого файла)
@@ -80,10 +78,9 @@ public class TextToAudioRadasteid {
                     if (Character.isUpperCase(alphabet[i])) {
                         Radasteid.add("F:\\textToAudio/Radasteid/25.wav");
                         Radasteid.add("F:\\textToAudio/Radasteid/Big/" + alphabet[i] + ".wav");
-                    } else if ('.' == alphabet[i]) {
+                    } else if ('.' == alphabet[i] || '!' == alphabet[i]) {
                         Radasteid.add("F:\\textToAudio/Radasteid/25.wav");
                         Radasteid.add("F:\\textToAudio/Radasteid/Smoll/" + "_Отделяет предложения 142(2) Радастея 0 N.wav");
-
                     } else {
                         Radasteid.add("F:\\textToAudio/Radasteid/Smoll/" + alphabet[i] + ".wav");
                     }
@@ -93,16 +90,22 @@ public class TextToAudioRadasteid {
         // Radasteid.add("F:\\textToAudio/Конец_переизлучения.wav");
 
 
-        // Добавление варианта музыки рамдомным способом в конце.
+        // Добавление варианта музыки рандомным способом в конце.
         // int rdm = (int) (Math.random() * 5);
         //Radasteid.add("F:\\textToAudio/Sound/v" + rdm + ".wav");
 
         //визуальный блок проверки
         // System.out.println(Math.random() + " " + rdm); // рандом не превышает 5
-        System.out.print("Визуально проверять на символы '_' ");
-        System.out.println(characters);// визуально проверять на символы '_'
-        System.out.println();
-        System.out.println("Радастеид" + Radasteid);
+        String listString = String.join(", ", Radasteid);
+        String listString2 = listString.replace(".wav, F:\\textToAudio/Radasteid/Smoll/","");
+        String listString3 = listString2.replace(".wav, F:\\textToAudio/Radasteid/Big/","");
+        String listString4 = listString3.replace(".wav, F:\\textToAudio/Radasteid/","");
+        System.out.println("String - " + listString4);
+
+        //System.out.print("Визуально проверять на символы '_' ");
+        //System.out.println(characters);// визуально проверять на символы '_'
+        //System.out.println();
+        //System.out.println("Радастеид" + Radasteid);
 
         try {
             RadasteidH.concatenateFiles(Radasteid, filePathName + fileName + "_РА ");
